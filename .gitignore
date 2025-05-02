@@ -1,0 +1,18 @@
+# Fichiers d'environnement contenant des secrets
+.env
+.env.local
+.env.development
+.env.production
+
+# Dépendances
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Fichiers de données générés
+user_map.json
+inventaires.json
+cooldowns.json
