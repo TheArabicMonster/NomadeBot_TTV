@@ -5,21 +5,17 @@ const config = require('../config/config');
 const inventory = require('../data/inventory');
 const cooldowns = require('../data/cooldowns');
 const messages = require('../config/messages');
-// Ces imports sont incorrects - il faut pointer vers data/static
-const rarities = require('../data/static/rarities');  // Corriger ce chemin
-const skins = require('../data/static/knives');       // Corriger ce chemin
+// Imports pour les données statiques
+const rarities = require('../data/static/rarities');
+const skins = require('../data/static/knives');
 
 // Variable pour suivre l'animation en cours
 let animationEnCours = false;
 
 /**
- * Commande !knife/!skin - Ouvre une caisse virtuelle
- * @param {Object} client - Le client Twitch
- * @param {string} channel - Le canal où la commande est exécutée
- * @param {Object} userstate - Les informations sur l'utilisateur
- * @param {string} [commandName='knife'] - Le nom de la commande pour le cooldown (par défaut 'knife')
+ * Commande !skin - Ouvre une caisse virtuelle
  */
-function openCase(client, channel, userstate, commandName = 'knife') {
+function openCase(client, channel, userstate) {
   const userId = userstate['user-id'];
   
   // Vérifier si une animation est en cours
@@ -31,9 +27,9 @@ function openCase(client, channel, userstate, commandName = 'knife') {
     return;
   }
   
-  // Vérifier le cooldown - Utiliser le nom de commande passé en paramètre
-  if (cooldowns.isOnCooldown(userId, commandName)) {
-    const remainingMinutes = cooldowns.getRemainingTime(userId, commandName);
+  // Vérifier le cooldown
+  if (cooldowns.isOnCooldown(userId, 'skin')) {
+    const remainingMinutes = cooldowns.getRemainingTime(userId, 'skin');
     client.say(
       channel,
       messages.errorMessages.cooldown(userstate.username, remainingMinutes)
@@ -41,8 +37,8 @@ function openCase(client, channel, userstate, commandName = 'knife') {
     return;
   }
   
-  // Appliquer le cooldown - Utiliser le nom de commande passé en paramètre
-  cooldowns.setCooldown(userId, commandName);
+  // Appliquer le cooldown
+  cooldowns.setCooldown(userId, 'skin');
   
   // Logique de tirage aléatoire pour déterminer la rareté
   const roll = Math.random() * 100;

@@ -4,9 +4,9 @@
  */
 const basicCommands = require('./basic');
 const inventoryCommands = require('./inventory');
-const knifeCommand = require('./knife');
 const statsCommands = require('./stats');
 const logger = require('../utils/logger');
+const skin = require('./skin');
 
 // Mappage des noms de commandes aux fonctions de traitement
 const commandMap = {
@@ -18,7 +18,7 @@ const commandMap = {
   info: basicCommands.info,
   
   // Commandes d'inventaire
-  skin: knifeCommand.openCase,  
+  skin: skin.openCase,  
   inventaire: inventoryCommands.showInventory,
   search: inventoryCommands.searchInventory,
   
@@ -29,7 +29,7 @@ const commandMap = {
   chance: statsCommands.showChances,
   
   // Commande sociale - à implémenter
-  // gift: socialCommands.giftSkin
+  // gift: socialCommands.giftSkin,
 };
 
 /**

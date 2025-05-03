@@ -7,6 +7,7 @@ module.exports = {
   // Cooldowns des commandes en millisecondes
   cooldowns: {
     knife: 5 * 60 * 1000,      // 5 minutes
+    skin: 5 * 60 * 1000,       // 5 minutes pour la commande skin
     daily: 24 * 60 * 60 * 1000 // 24 heures
   },
   
