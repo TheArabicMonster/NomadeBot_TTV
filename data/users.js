@@ -6,7 +6,7 @@ const path = require('path');
 const config = require('../config/config');
 
 // Chemin vers le fichier de mapping des utilisateurs
-const USER_MAP_FILE = path.join(__dirname, '..', config.storage.files.userMap);
+const USER_MAP_FILE = path.join(__dirname, '..', 'config', 'user_map.json');
 
 // Cache des utilisateurs (en mémoire)
 let userMapping = {};

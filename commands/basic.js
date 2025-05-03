@@ -2,12 +2,14 @@
  * Commandes basiques du bot (hello, dice, info, help)
  */
 const config = require('../config/config');
+const messageQueue = require('../utils/messageQueue');
 
 /**
  * Commande !help ou !commandes - Liste les commandes disponibles
  */
 function help(client, channel, userstate) {
-  client.say(
+  messageQueue.enqueue(
+    client,
     channel,
     `@${userstate.username}, voici les commandes disponibles : !hello, !dice, !info, !knife, !inventaire, !stats, !top, !chance, !gift <utilisateur> <numéro>, !search <terme>`
   );
@@ -17,7 +19,8 @@ function help(client, channel, userstate) {
  * Commande !hello - Salue l'utilisateur
  */
 function hello(client, channel, userstate) {
-  client.say(
+  messageQueue.enqueue(
+    client,
     channel,
     `👋 Hey @${userstate.username}, bienvenue dans le stream!`
   );
@@ -28,7 +31,8 @@ function hello(client, channel, userstate) {
  */
 function dice(client, channel, userstate) {
   const roll = Math.floor(Math.random() * 6) + 1;
-  client.say(
+  messageQueue.enqueue(
+    client,
     channel,
     `🎲 @${userstate.username} lance un dé et obtient un ${roll}!`
   );
@@ -38,7 +42,8 @@ function dice(client, channel, userstate) {
  * Commande !info - Affiche des informations sur le bot
  */
 function info(client, channel, userstate) {
-  client.say(
+  messageQueue.enqueue(
+    client,
     channel,
     `ℹ️ NomadeBot - Un bot qui permet d'ouvrir des caisses CS2 virtuelles. Développé par Nomade, utilisez !help pour voir les commandes disponibles.`
   );

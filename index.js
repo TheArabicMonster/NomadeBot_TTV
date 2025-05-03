@@ -56,8 +56,11 @@ client.on('connected', () => {
 
 // Événement: Réception des messages
 client.on('message', (channel, userstate, message, self) => {
-  // Ignorer les messages du bot
-  if (self) return;
+  // Ignorer les messages du bot - Correction de la vérification
+  if (self || userstate.username.toLowerCase() === process.env.TWITCH_BOT_USERNAME.toLowerCase()) {
+    logger.debug(`Message ignoré (bot): ${message}`);
+    return;
+  }
   
   // Enregistrer l'utilisateur
   users.recordUser(userstate.username, userstate['user-id']);
