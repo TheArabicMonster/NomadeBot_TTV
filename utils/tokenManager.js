@@ -135,6 +135,93 @@ function refreshToken() {
 }
 
 /**
+ * Vérifie si le token est valide en interrogeant l'API Twitch
+ * @returns {Promise<boolean>} Promise résolue avec true si le token est valide, false sinon
+ */
+function validateToken() {
+  return new Promise((resolve, reject) => {
+    const token = process.env.TWITCH_TOKEN;
+    if (!token) {
+      logger.error('Pas de token à valider');
+      return resolve(false);
+    }
+    
+    // Extraire le token pur sans le préfixe oauth:
+    const purToken = token.startsWith('oauth:') ? token.substring(6) : token;
+    
+    const options = {
+      hostname: 'id.twitch.tv',
+      port: 443,
+      path: '/oauth2/validate',
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${purToken}`
+      }
+    };
+    
+    const req = https.request(options, (res) => {
+      let responseData = '';
+      
+      res.on('data', (chunk) => {
+        responseData += chunk;
+      });
+      
+      res.on('end', () => {
+        // Si status 200, le token est valide
+        if (res.statusCode === 200) {
+          logger.debug('Token validé par l\'API Twitch');
+          resolve(true);
+        } else {
+          logger.debug(`Token invalide, statut HTTP: ${res.statusCode}, réponse: ${responseData}`);
+          resolve(false);
+        }
+      });
+    });
+    
+    req.on('error', (error) => {
+      logger.error('Erreur lors de la validation du token:', error);
+      // En cas d'erreur réseau, on ne peut pas conclure que le token est invalide
+      resolve(false);
+    });
+    
+    req.end();
+  });
+}
+
+/**
+ * Gère l'échec d'authentification en rafraîchissant le token et en réessayant la connexion
+ * @param {Object} client - Client TMI.js
+ * @returns {Promise<boolean>} Promise résolue avec true si la reconnexion a réussi
+ */
+async function handleAuthFailure(client) {
+  logger.warn('Échec d\'authentification détecté, tentative de rafraîchissement du token...');
+  
+  try {
+    // Rafraîchir le token
+    await refreshToken();
+    
+    // Mettre à jour le token dans le client
+    if (client && client.opts && client.opts.identity) {
+      client.opts.identity.password = process.env.TWITCH_TOKEN;
+      logger.debug('Token mis à jour dans le client Twitch');
+    }
+    
+    // Si un client est fourni, essayer de se reconnecter
+    if (client && typeof client.connect === 'function') {
+      logger.info('Tentative de reconnexion avec le nouveau token...');
+      await client.connect();
+      logger.info('Reconnexion réussie avec le nouveau token!');
+      return true;
+    }
+    
+    return true;
+  } catch (error) {
+    logger.error('Échec de la récupération ou de la reconnexion:', error);
+    return false;
+  }
+}
+
+/**
  * Met à jour le fichier .env avec les nouvelles valeurs
  * @param {Object} newValues - Objet contenant les clés et valeurs à mettre à jour
  * @returns {Promise<void>} - Promise résolue quand la mise à jour est terminée
@@ -233,5 +320,7 @@ function setupTokenCheck(interval = 24 * 60 * 60 * 1000) {
 module.exports = {
   checkTokenExpiry,
   refreshToken,
-  setupTokenCheck
+  setupTokenCheck,
+  validateToken,
+  handleAuthFailure
 };

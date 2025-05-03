@@ -11,7 +11,7 @@ const messages = require('./config/messages');
 const inventory = require('./data/inventory');
 const cooldowns = require('./data/cooldowns');
 const users = require('./data/users');
-const tokenManager = require('./utils/tokenManager'); // Ajouter cette ligne
+const tokenManager = require('./utils/tokenManager');
 
 // Vérifier les variables d'environnement requises
 const requiredEnvVars = ['TWITCH_BOT_USERNAME', 'TWITCH_TOKEN', 'TWITCH_CHANNEL', 
@@ -40,11 +40,41 @@ const client = new tmi.Client({
   channels: [process.env.TWITCH_CHANNEL],
 });
 
-// Connexion au serveur Twitch
-client
-  .connect()
-  .then(() => logger.info('✅ Bot connecté à Twitch'))
-  .catch((err) => logger.error('❌ Erreur de connexion à Twitch:', err));
+// Connexion au serveur Twitch avec gestion des erreurs d'authentification
+async function connectWithRetry() {
+  try {
+    await client.connect();
+    logger.info('✅ Bot connecté à Twitch');
+  } catch (err) {
+    logger.error('❌ Erreur de connexion à Twitch:', err);
+    
+    // Vérifier si c'est une erreur d'authentification
+    const authErrors = [
+      'Login authentication failed',
+      'Invalid OAuth token',
+      'msg_banned',
+      'tos_banned',
+      'Error logging in to chat',
+      'Error connecting to server: Login unsuccessful.'
+    ];
+    
+    const isAuthError = authErrors.some(errText => 
+      err.message && err.message.includes(errText)
+    );
+    
+    if (isAuthError) {
+      logger.warn('Erreur d\'authentification détectée, tentative de rafraîchissement du token...');
+      const success = await tokenManager.handleAuthFailure(client);
+      
+      if (!success) {
+        logger.error('Échec des tentatives de reconnexion après rafraîchissement du token');
+      }
+    }
+  }
+}
+
+// Remplacer l'ancien appel à connect par notre nouvelle fonction
+connectWithRetry();
 
 // Événement: Connexion établie
 client.on('connected', () => {
@@ -82,8 +112,17 @@ client.on('reconnect', () => {
 });
 
 // Événement: Déconnexion
-client.on('disconnected', (reason) => {
+client.on('disconnected', async (reason) => {
   logger.warn(`Déconnecté de Twitch: ${reason}`);
+  
+  // Vérifier si la déconnexion est liée à un problème d'authentification
+  if (reason && (reason.includes('authentication') || reason.includes('token') || reason.includes('login'))) {
+    logger.warn('Déconnexion due à un problème d\'authentification, tentative de récupération...');
+    // Attendre un peu avant de tenter la reconnexion
+    setTimeout(async () => {
+      await tokenManager.handleAuthFailure(client);
+    }, 5000);
+  }
 });
 
 // Configuration des sauvegardes automatiques des données
