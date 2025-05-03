@@ -59,8 +59,8 @@ describe('Command Handler', () => {
   });
   
   test('devrait traiter une commande knife', () => {
-    commandHandler.processCommand(mockClient, mockChannel, mockUserstate, '!knife');
-    expect(knifeCommand.openCase).toHaveBeenCalledWith(mockClient, mockChannel, mockUserstate, [], '!knife'.slice(1));
+    commandHandler.processCommand(mockClient, mockChannel, mockUserstate, '!skin');
+    expect(knifeCommand.openCase).toHaveBeenCalledWith(mockClient, mockChannel, mockUserstate, [], '!skin'.slice(1));
   });
   
   test('devrait traiter une commande inventaire avec des arguments', () => {

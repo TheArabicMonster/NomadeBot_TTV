@@ -5,22 +5,26 @@
 require('dotenv').config();
 const tmi = require('tmi.js');
 const config = require('./config/config');
-// Création des fichiers manquants:
-const commandHandler = require('./commands'); // Il manque un commands/index.js pour ce require
-const logger = require('./utils/logger'); // Ce module est manquant
+const commandHandler = require('./commands');
+const logger = require('./utils/logger');
 const messages = require('./config/messages');
 const inventory = require('./data/inventory');
 const cooldowns = require('./data/cooldowns');
 const users = require('./data/users');
+const tokenManager = require('./utils/tokenManager'); // Ajouter cette ligne
 
 // Vérifier les variables d'environnement requises
-const requiredEnvVars = ['TWITCH_BOT_USERNAME', 'TWITCH_TOKEN', 'TWITCH_CHANNEL'];
+const requiredEnvVars = ['TWITCH_BOT_USERNAME', 'TWITCH_TOKEN', 'TWITCH_CHANNEL', 
+                         'TWITCH_CLIENT_ID', 'TWITCH_CLIENT_SECRET', 'TWITCH_REFRESH_TOKEN'];
 for (const envVar of requiredEnvVars) {
   if (!process.env[envVar]) {
     logger.error(`La variable d'environnement ${envVar} est manquante!`);
     process.exit(1);
   }
 }
+
+// Configurer la vérification du token (toutes les 24h)
+tokenManager.setupTokenCheck();
 
 // Configuration du client Twitch
 const client = new tmi.Client({
@@ -84,7 +88,8 @@ client.on('disconnected', (reason) => {
 
 // Configuration des sauvegardes automatiques des données
 inventory.setupAutoSave();
-cooldowns.setupAutoSave();
+// cooldowns.setupAutoSave();
+console.log('⏱️ Système de cooldown en mémoire configuré');
 users.setupAutoSave();
 
 // Intercepter les erreurs non gérées

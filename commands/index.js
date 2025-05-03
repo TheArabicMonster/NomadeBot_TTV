@@ -6,6 +6,7 @@ const basicCommands = require('./basic');
 const inventoryCommands = require('./inventory');
 const knifeCommand = require('./knife');
 const statsCommands = require('./stats');
+const logger = require('../utils/logger');
 
 // Mappage des noms de commandes aux fonctions de traitement
 const commandMap = {
@@ -17,7 +18,7 @@ const commandMap = {
   info: basicCommands.info,
   
   // Commandes d'inventaire
-  knife: knifeCommand.openCase,
+  skin: knifeCommand.openCase,  
   inventaire: inventoryCommands.showInventory,
   search: inventoryCommands.searchInventory,
   
@@ -25,7 +26,7 @@ const commandMap = {
   stats: statsCommands.showStats,
   top: statsCommands.showLeaderboard,
   leaderboard: statsCommands.showLeaderboard,
-  chance: statsCommands.showChances, // Virgule manquante ici
+  chance: statsCommands.showChances,
   
   // Commande sociale - à implémenter
   // gift: socialCommands.giftSkin
@@ -47,15 +48,21 @@ function processCommand(client, channel, userstate, message) {
   const commandName = config.commands.caseSensitive ? parts[0] : parts[0].toLowerCase();
   const args = parts.slice(1);
   
+  logger.debug(`Traitement de la commande '${commandName}' avec arguments: [${args.join(', ')}]`);
+  
   // Trouver et exécuter la commande
   const command = commandMap[commandName];
   if (command) {
+    logger.debug(`Commande '${commandName}' trouvée, exécution...`);
     try {
       command(client, channel, userstate, args, message.slice(config.commands.prefix.length));
+      logger.debug(`Commande '${commandName}' exécutée avec succès`);
     } catch (error) {
-      console.error(`Erreur lors de l'exécution de la commande ${commandName}:`, error);
+      logger.error(`Erreur lors de l'exécution de la commande ${commandName}:`, error);
       client.say(channel, `@${userstate.username}, une erreur s'est produite lors de l'exécution de cette commande.`);
     }
+  } else {
+    logger.debug(`Commande inconnue: '${commandName}'`);
   }
 }
 

@@ -88,7 +88,7 @@ describe('Knife Command', () => {
     knifeCommand.openCase(mockClient, mockChannel, mockUserstate);
     
     // Vérifications
-    expect(cooldowns.setCooldown).toHaveBeenCalledWith('123456', 'knife');
+    expect(cooldowns.setCooldown).toHaveBeenCalledWith('123456', 'skin');  // Changé de knife à skin
     expect(inventory.addSkinToInventory).toHaveBeenCalledWith('123456', expect.objectContaining({
       name: 'AK-47 | Test Skin',
       rarity: 'mil-spec'

@@ -8,7 +8,7 @@ NomadeBot_TTV est un bot Twitch qui anime les streams en permettant aux spectate
 
 ## ✨ Fonctionnalités
 
-- **Système de caisses virtuelles** : Obtenez des skins virtuels CS2 avec la commande `!knife`
+- **Système de caisses virtuelles** : Obtenez des skins virtuels CS2 avec la commande `!skin`
 - **Inventaire personnel** : Chaque utilisateur dispose d'un inventaire persistant
 - **Différentes raretés** : De Mil-Spec (bleu) à Extraordinary (couteaux ★)
 - **Statistiques** : Consultez vos statistiques et comparez-les à celles des autres
@@ -64,7 +64,7 @@ Le bot est configurable via le fichier `config/config.js`. Vous pouvez y ajuster
 | `!hello` | Le bot vous salue |
 | `!dice` | Lance un dé à 6 faces |
 | `!info` | Affiche des informations sur le bot |
-| `!knife` | Ouvre une caisse virtuelle pour obtenir un skin |
+| `!skin` | Ouvre une caisse virtuelle pour obtenir un skin |
 | `!inventaire` [page] | Affiche votre inventaire de skins |
 | `!stats` | Affiche vos statistiques |
 | `!top` ou `!leaderboard` | Affiche le classement des meilleurs inventaires |

@@ -16,7 +16,7 @@ function showStats(client, channel, userstate) {
   if (!userInventory || userInventory.length === 0) {
     client.say(
       channel,
-      `@${userstate.username}, tu n'as pas encore ouvert de caisses. Utilise !knife pour commencer!`
+      `@${userstate.username}, tu n'as pas encore ouvert de caisses. Utilise !skin pour commencer!`
     );
     return;
   }
@@ -83,7 +83,7 @@ function showLeaderboard(client, channel) {
   if (users.length === 0) {
     client.say(
       channel,
-      `Aucun utilisateur n'a encore ouvert de caisses. Soyez le premier avec !knife!`
+      `Aucun utilisateur n'a encore ouvert de caisses. Soyez le premier avec !skin!`
     );
     return;
   }

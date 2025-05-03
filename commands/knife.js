@@ -13,7 +13,7 @@ const skins = require('../data/static/knives');       // Corriger ce chemin
 let animationEnCours = false;
 
 /**
- * Commande !knife - Ouvre une caisse virtuelle
+ * Commande !skin - Ouvre une caisse virtuelle
  */
 function openCase(client, channel, userstate) {
   const userId = userstate['user-id'];
@@ -28,8 +28,8 @@ function openCase(client, channel, userstate) {
   }
   
   // Vérifier le cooldown
-  if (cooldowns.isOnCooldown(userId, 'knife')) {
-    const remainingMinutes = cooldowns.getRemainingTime(userId, 'knife');
+  if (cooldowns.isOnCooldown(userId, 'skin')) {  // Changé de knife à skin
+    const remainingMinutes = cooldowns.getRemainingTime(userId, 'skin');  // Changé de knife à skin
     client.say(
       channel,
       messages.errorMessages.cooldown(userstate.username, remainingMinutes)
@@ -38,7 +38,7 @@ function openCase(client, channel, userstate) {
   }
   
   // Appliquer le cooldown
-  cooldowns.setCooldown(userId, 'knife');
+  cooldowns.setCooldown(userId, 'skin');  // Changé de knife à skin
   
   // Logique de tirage aléatoire pour déterminer la rareté
   const roll = Math.random() * 100;

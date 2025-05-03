@@ -18,7 +18,7 @@ function showInventory(client, channel, userstate, args) {
   if (!userInventory || userInventory.length === 0) {
     client.say(
       channel,
-      `@${username}, tu n'as pas encore de skins dans ton inventaire. Utilise !knife pour en obtenir!`
+      `@${username}, tu n'as pas encore de skins dans ton inventaire. Utilise !skin pour en obtenir!`
     );
     return;
   }
@@ -54,18 +54,18 @@ function showInventory(client, channel, userstate, args) {
 
   const pageInfo = totalPages > 1 ? ` (Page ${page}/${totalPages})` : "";
 
-  // Envoyer la réponse en message privé
-  messageQueue.enqueueWhisper(
+  // Envoyer la réponse directement dans le chat public au lieu d'un message privé
+  messageQueue.enqueue(
     client,
-    username,
-    `Ton inventaire${pageInfo}: ${inventoryList}`
+    channel,
+    `@${username}, voici ton inventaire${pageInfo}: ${inventoryList}`
   );
 
-  // Envoyer une confirmation dans le chat public
-  client.say(
-    channel,
-    `@${username}, je t'ai envoyé ton inventaire en message privé.`
-  );
+  // Supprimer la confirmation dans le chat public puisqu'on envoie déjà le message dans le chat
+  // client.say(
+  //  channel,
+  //  `@${username}, je t'ai envoyé ton inventaire en message privé.`
+  // );
 }
 
 /**
@@ -87,7 +87,7 @@ function searchInventory(client, channel, userstate, args, fullCommand) {
   if (!userInventory || userInventory.length === 0) {
     client.say(
       channel,
-      `@${username}, tu n'as pas encore de skins dans ton inventaire. Utilise !knife pour en obtenir!`
+      `@${username}, tu n'as pas encore de skins dans ton inventaire. Utilise !skin pour en obtenir!`
     );
     return;
   }
@@ -124,18 +124,18 @@ function searchInventory(client, channel, userstate, args, fullCommand) {
       ? `${results} et ${totalMatches - maxResults} autres résultats...`
       : results;
 
-  // Envoyer en message privé
-  messageQueue.enqueueWhisper(
+  // Envoyer directement dans le chat public au lieu d'un message privé
+  messageQueue.enqueue(
     client,
-    username,
-    `Résultats pour "${searchTerm}": ${message}`
+    channel,
+    `@${username}, résultats pour "${searchTerm}": ${message}`
   );
 
-  // Confirmation dans le chat public
-  client.say(
-    channel,
-    `@${username}, je t'ai envoyé les résultats de ta recherche en message privé.`
-  );
+  // Supprimer la confirmation dans le chat public
+  // client.say(
+  //  channel,
+  //  `@${username}, je t'ai envoyé les résultats de ta recherche en message privé.`
+  // );
 }
 
 module.exports = {

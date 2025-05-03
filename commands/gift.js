@@ -39,7 +39,7 @@ function giftSkin(client, channel, userstate, args) {
   if (!senderInventory || senderInventory.length === 0) {
     client.say(
       channel,
-      `@${userstate.username}, ton inventaire est vide. Utilise !knife pour obtenir des skins!`
+      `@${userstate.username}, ton inventaire est vide. Utilise !skin pour obtenir des skins!`
     );
     return;
   }
