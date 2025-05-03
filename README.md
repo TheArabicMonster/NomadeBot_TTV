@@ -78,7 +78,8 @@ Le bot est configurable via le fichier `config/config.js`. Vous pouvez y ajuster
 NomadeBot_TTV/
 ├── config/                     # Configuration
 │   ├── config.js               # Paramètres généraux
-│   └── messages.js             # Messages et textes du bot
+│   ├── messages.js             # Messages et textes du bot
+│   └── user_map.json           # Associe les IDs Twitch aux noms d'utilisateurs
 ├── data/                       # Données
 │   ├── inventory.js            # Gestion des inventaires
 │   ├── users.js                # Gestion des utilisateurs
@@ -116,7 +117,7 @@ Le bot utilise différentes raretés pour les skins, inspirées de CS2 :
 Les données des utilisateurs sont stockées dans trois fichiers JSON :
 - `inventaires.json` - Contient tous les inventaires des utilisateurs
 - `cooldowns.json` - Gère les cooldowns des commandes
-- `user_map.json` - Associe les IDs Twitch aux noms d'utilisateurs
+- `config/user_map.json` - Associe les IDs Twitch aux noms d'utilisateurs
 
 ## 🛠️ Développement
 
