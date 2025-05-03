@@ -1,0 +1,298 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for NomadeBot_TTV/config/messages.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">NomadeBot_TTV/config</a> messages.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">21.05% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>4/19</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/10</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">21.05% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>4/19</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Messages et textes utilisés par le bot
+ */
+&nbsp;
+// Messages périodiques aléatoires
+const periodicMessages = [
+  "👆 Cette personne est de mèche 🤝 avec Xi Jinping 🐉 ☝️",
+  "👆 Cet utilisateur soutient 🗳️ le PCC 🇨🇳 ☝️🤔",
+  "👆 ⚠️ Soupçonné de trahison 🤫 envers l'humanité 🌍 ⚠️ ☝️",
+  "👆 🤡 Candidat officiel 🎖️ pour les Darwin Awards 💥 ☝️🏆",
+  "👆 💀 A vendu son âme 🧾 pour quelques skins CS:GO 🔪 ☝️💰",
+  "👆 🧠 A un QI négatif 📉 confirmé scientifiquement 🔬 ☝️",
+  "👆 🚨 Recherché par Interpol 🕵️ pour crimes contre l'humanité 🎨 ☝️",
+  "👆 🥶 Joue encore à CS:GO en 640x480 🖥️ pour 'meilleure perf' 💾 ☝️",
+  "👆 🦀 A remplacé l'eau 💧 par du Monster Energy ⚡ ☝️🥤",
+  "👆 🐢 Joue avec un PC 💻 de 2007 📦 et ça se voit 👓 ☝️⌛",
+  "👆 🧂 Se fait mute 🔇 en 2 rounds 🕒 pour toxicité ☝️💢",
+  "👆 🐄 Utilise encore Teamspeak en BIG 2025 ☝️📻",
+  "👆 a déjà bark en vocal pour un knife ☝️🐕",
+  "👆 🏳️‍🌈 Dans la rue on le confond 🧍 avec un femboy 💅 ☝️✨",
+  "👆 🧠 Se prend pour Aizen Prime 🧥 mais fait encore pipi au lit 🛏️ ☝️",
+  "👆 🎤 A déjà assisté 📚 à une conférence de Oussama Ammar 💼 ☝️📢",
+  "👆 👔 CEO de la team 21 🕹️ ☝️👑",
+  "👆 🐶 Bark en DM 📩 pour sa e-girl ☝️",
+  "👆 🍕 A un régime alimentaire plus choquant 😨 que celui d'Hchizen ☝️🤢",
+  "👆 Son QI est plus bas 📉 que son ping 📶 en pleine game 🚨☝️"
+];
+&nbsp;
+// Messages d'erreur
+const errorMessages = {
+  cooldown: <span class="fstat-no" title="function not covered" >(u</span>sername, minutes) =&gt; <span class="cstat-no" title="statement not covered" >`@${username}, tu dois attendre encore ${minutes} minute(s).`,</span>
+  animation: <span class="fstat-no" title="function not covered" >(u</span>sername) =&gt; <span class="cstat-no" title="statement not covered" >`@${username}, une animation est en cours! Attends qu'elle se termine.`,</span>
+  emptyInventory: <span class="fstat-no" title="function not covered" >(u</span>sername, commandName) =&gt; <span class="cstat-no" title="statement not covered" >`@${username}, tu n'as pas encore de skins dans ton inventaire. Utilise !${commandName} pour en obtenir!`,</span>
+  invalidUser: <span class="fstat-no" title="function not covered" >(u</span>sername, targetName) =&gt; <span class="cstat-no" title="statement not covered" >`@${username}, je ne trouve pas d'utilisateur nommé "${targetName}" dans mes données.`,</span>
+  invalidItem: <span class="fstat-no" title="function not covered" >(u</span>sername) =&gt; <span class="cstat-no" title="statement not covered" >`@${username}, cet item n'existe pas dans ton inventaire.`</span>
+};
+&nbsp;
+// Réponses aux commandes réussies
+const successMessages = {
+  knife: <span class="fstat-no" title="function not covered" >(u</span>sername, rarity, skinName) =&gt; <span class="cstat-no" title="statement not covered" >`${rarity.emoji} @${username} ${rarity.message}: ${skinName} ${rarity.emoji}`,</span>
+  gift: <span class="fstat-no" title="function not covered" >(s</span>ender, recipient, rarity, skinName) =&gt; <span class="cstat-no" title="statement not covered" >`🎁 @${sender} a offert ${rarity.emoji} ${skinName} à @${recipient}! Quel acte de générosité!`,</span>
+  stats: <span class="fstat-no" title="function not covered" >(u</span>sername, totalCases, bestSkin, bestRarity, distribution) =&gt; 
+<span class="cstat-no" title="statement not covered" >    `@${username}, tu as ouvert ${totalCases} caisses. Ton meilleur skin: ${bestRarity.emoji} ${bestSkin}. Distribution: ${distribution}`</span>
+};
+&nbsp;
+// Fonction pour démarrer les messages périodiques
+function <span class="fstat-no" title="function not covered" >startPeriodicMessages(</span>client, channel) {
+  const config = <span class="cstat-no" title="statement not covered" >require('./config');</span>
+  const { randomFromArray, randomBetween } = <span class="cstat-no" title="statement not covered" >require('../utils/helpers');</span>
+  
+  function <span class="fstat-no" title="function not covered" >sendMessage(</span>) {
+    const message = <span class="cstat-no" title="statement not covered" >randomFromArray(periodicMessages);</span>
+<span class="cstat-no" title="statement not covered" >    client.say(channel, message);</span>
+    
+    const nextInterval = <span class="cstat-no" title="statement not covered" >randomBetween(</span>
+      config.periodicMessages.minInterval,
+      config.periodicMessages.maxInterval
+    );
+    
+<span class="cstat-no" title="statement not covered" >    setTimeout(sendMessage, nextInterval);</span>
+  }
+  
+  // Démarrer la séquence avec le délai initial
+<span class="cstat-no" title="statement not covered" >  setTimeout(sendMessage, config.periodicMessages.initialDelay);</span>
+}
+&nbsp;
+module.exports = {
+  periodicMessages,
+  errorMessages,
+  successMessages,
+  startPeriodicMessages
+};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-05-03T08:07:12.845Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    
