@@ -1,6 +1,3 @@
-const rarities = require('../data/static/rarities');
-const skins = require('../data/static/knives');
-
 // Liste des couteaux cs2
 const knives = [
   "⭐ Bayonet | Vanilla",

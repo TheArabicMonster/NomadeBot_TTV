@@ -1,15 +1,14 @@
 /**
  * Point d'entrée pour toutes les commandes du bot
- * Ce fichier importe et exporte toutes les commandes disponibles
+ * Charge les différentes commandes et les expose via une fonction processCommand
  */
 const basicCommands = require('./basic');
 const inventoryCommands = require('./inventory');
 const knifeCommand = require('./knife');
 const statsCommands = require('./stats');
-const giftCommand = require('./gift');  
 
-// Mapper les noms de commandes à leurs gestionnaires
-const commandHandlers = {
+// Mappage des noms de commandes aux fonctions de traitement
+const commandMap = {
   // Commandes de base
   help: basicCommands.help,
   commandes: basicCommands.help,
@@ -18,39 +17,43 @@ const commandHandlers = {
   info: basicCommands.info,
   
   // Commandes d'inventaire
+  knife: knifeCommand.openCase,
   inventaire: inventoryCommands.showInventory,
   search: inventoryCommands.searchInventory,
   
-  // Commande knife
-  knife: knifeCommand.openCase,
-  
-  // Commandes de stats
+  // Commandes de statistiques
   stats: statsCommands.showStats,
   top: statsCommands.showLeaderboard,
   leaderboard: statsCommands.showLeaderboard,
-  chance: statsCommands.showChances,
+  chance: statsCommands.showChances, // Virgule manquante ici
   
-  // Commande gift (renommé)
-  gift: giftCommand.giftSkin
+  // Commande sociale - à implémenter
+  // gift: socialCommands.giftSkin
 };
 
 /**
- * Traite une commande reçue
+ * Traite une commande entrée par l'utilisateur
  */
 function processCommand(client, channel, userstate, message) {
-  // Extraction de la commande et des arguments
-  const fullCommand = message.trim();
-  const commandParts = fullCommand.split(' ');
-  const cmdName = commandParts[0].substring(1).toLowerCase(); // Enlève le "!"
-  const args = commandParts.slice(1);
+  const config = require('../config/config');
   
-  // Vérifier si la commande existe
-  const handler = commandHandlers[cmdName];
-  if (handler) {
+  // Vérifier que le message commence par le préfixe
+  if (!message.startsWith(config.commands.prefix)) {
+    return;
+  }
+  
+  // Extraire le nom de la commande et les arguments
+  const parts = message.slice(config.commands.prefix.length).trim().split(' ');
+  const commandName = config.commands.caseSensitive ? parts[0] : parts[0].toLowerCase();
+  const args = parts.slice(1);
+  
+  // Trouver et exécuter la commande
+  const command = commandMap[commandName];
+  if (command) {
     try {
-      handler(client, channel, userstate, args, fullCommand);
+      command(client, channel, userstate, args, message.slice(config.commands.prefix.length));
     } catch (error) {
-      console.error(`Erreur lors de l'exécution de la commande ${cmdName}:`, error);
+      console.error(`Erreur lors de l'exécution de la commande ${commandName}:`, error);
       client.say(channel, `@${userstate.username}, une erreur s'est produite lors de l'exécution de cette commande.`);
     }
   }
@@ -58,5 +61,5 @@ function processCommand(client, channel, userstate, message) {
 
 module.exports = {
   processCommand,
-  commandHandlers
+  commandMap
 };

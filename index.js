@@ -5,12 +5,13 @@
 require('dotenv').config();
 const tmi = require('tmi.js');
 const config = require('./config/config');
-const commandHandler = require('./commands');
+// Création des fichiers manquants:
+const commandHandler = require('./commands'); // Il manque un commands/index.js pour ce require
+const logger = require('./utils/logger'); // Ce module est manquant
 const messages = require('./config/messages');
 const inventory = require('./data/inventory');
 const cooldowns = require('./data/cooldowns');
 const users = require('./data/users');
-const logger = require('./utils/logger');
 
 // Vérifier les variables d'environnement requises
 const requiredEnvVars = ['TWITCH_BOT_USERNAME', 'TWITCH_TOKEN', 'TWITCH_CHANNEL'];

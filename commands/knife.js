@@ -5,8 +5,9 @@ const config = require('../config/config');
 const inventory = require('../data/inventory');
 const cooldowns = require('../data/cooldowns');
 const messages = require('../config/messages');
-const rarities = require('../rarities');  // À déplacer dans data/ plus tard
-const skins = require('../knives');       // À déplacer dans data/ plus tard
+// Ces imports sont incorrects - il faut pointer vers data/static
+const rarities = require('../data/static/rarities');  // Corriger ce chemin
+const skins = require('../data/static/knives');       // Corriger ce chemin
 
 // Variable pour suivre l'animation en cours
 let animationEnCours = false;
