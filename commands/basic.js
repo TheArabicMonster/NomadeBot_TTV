@@ -11,7 +11,7 @@ function help(client, channel, userstate) {
   messageQueue.enqueue(
     client,
     channel,
-    `@${userstate.username}, voici les commandes disponibles : !hello, !dice, !info, !skin, !inventaire, !stats, !top, !chance, !gift <utilisateur> <numéro>, !search <terme>`
+    `@${userstate.username}, voici les commandes disponibles : !hello, !dice, !info, !skin, !daily, !inventaire, !stats, !top, !chance, !gift <utilisateur> <numéro>, !search <terme>`
   );
 }
 

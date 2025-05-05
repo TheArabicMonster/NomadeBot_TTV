@@ -7,6 +7,7 @@ const inventoryCommands = require('./inventory');
 const statsCommands = require('./stats');
 const logger = require('../utils/logger');
 const skin = require('./skin');
+const dailyCommand = require('./daily');
 
 // Mappage des noms de commandes aux fonctions de traitement
 const commandMap = {
@@ -27,6 +28,9 @@ const commandMap = {
   top: statsCommands.showLeaderboard,
   leaderboard: statsCommands.showLeaderboard,
   chance: statsCommands.showChances,
+  
+  // Commande quotidienne
+  daily: dailyCommand.claimDailyReward,
   
   // Commande sociale - à implémenter
   // gift: socialCommands.giftSkin,
