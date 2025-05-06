@@ -8,7 +8,7 @@ const config = require('./config/config');
 const commandHandler = require('./commands');
 const logger = require('./utils/logger');
 const messages = require('./config/messages');
-const inventory = require('./data/inventory');
+const inventory = require('./data/inventoryAdapter');
 const cooldowns = require('./data/cooldowns');
 const users = require('./data/users');
 const tokenManager = require('./utils/tokenManager');
@@ -126,7 +126,7 @@ client.on('disconnected', async (reason) => {
 });
 
 // Configuration des sauvegardes automatiques des données
-inventory.setupAutoSave();
+inventory.setupAutoSave(config.storage.autoSaveInterval);
 // cooldowns.setupAutoSave();
 console.log('⏱️ Système de cooldown en mémoire configuré');
 users.setupAutoSave();
