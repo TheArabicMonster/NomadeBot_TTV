@@ -1,5 +1,10 @@
 # NomadeBot_TTV
 
+🌍 **Langue / Language** :
+[Français](./README.md) | [English](./README.en.md)
+
+---
+
 Un bot Twitch interactif permettant aux viewers d'ouvrir des caisses CS2 virtuelles et de collectionner des skins.
 
 ## 📋 Description
