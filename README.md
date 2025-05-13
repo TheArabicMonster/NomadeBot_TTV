@@ -27,7 +27,6 @@ NomadeBot_TTV est un bot Twitch qui anime les streams en permettant aux spectate
 - Node.js 14.0.0 ou plus récent
 - Compte Twitch Bot
 - Token OAuth Twitch
-- (une web-cam btw)
 
 ### Étapes d'installation
 1. Clonez le dépôt :
